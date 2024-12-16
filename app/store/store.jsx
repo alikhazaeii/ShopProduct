@@ -8,6 +8,7 @@ const useCartStore = create((set) => ({
       return {
         cart: state.cart.map((item) =>
           item.id === product.id ? { ...item, count: item.count + 1 } : item
+        
         ),
       };
     }
@@ -17,6 +18,8 @@ const useCartStore = create((set) => ({
     cart: state.cart.filter((item) => item.id !== id),
   })),
   clearCart: () => set(() => ({ cart: [] })),
+  getTotalItems: () => 
+    get().cart.reduce((total,item)=>total + item.count,0),
 }));
 
 export default useCartStore;

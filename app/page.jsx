@@ -1,11 +1,11 @@
 import React from 'react'
 import Home from "./product/page";
-import CartPage from './cart/page';
+import Video from "@/components/video";
 export default function App() {
   return (
-    <main className='relative'>
+    <section  >
+      <Video/>
       <Home/>
-      <CartPage/> 
-    </main>
+    </section>
   )
 }

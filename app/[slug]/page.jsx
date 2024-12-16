@@ -1,10 +1,9 @@
-// app/[slug]/page.jsx
-'use client';  // این خط را برای تبدیل کامپوننت به Client Component اضافه کنید
-
+'use client'
 import React, { useEffect, useState } from 'react';
 import useCartStore from '@/app/store/store';
 import Link from 'next/link';
-import CartPage from '../cart/page';
+import { Alert } from '@mui/material'; // Import Alert component
+import { Height } from '@mui/icons-material';
 
 // تابع واکشی داده‌های محصول
 async function dataProduct(id) {
@@ -16,23 +15,23 @@ async function dataProduct(id) {
 }
 
 export default function ProductDetails({ params }) {
-  const [product, setProduct] = useState(null);  // ذخیره محصول در state
-  const addToCart = useCartStore((state) => state.addToCart);  // دسترسی به متد addToCart از Zustand
-  const [slug, setSlug] = useState(null);  // برای ذخیره‌ی مقدار slug
+  const [product, setProduct] = useState(null);  
+  const addToCart = useCartStore((state) => state.addToCart); 
+  const [slug, setSlug] = useState(null);  
+  const [showAlert, setShowAlert] = useState(false); // State to control Alert visibility
 
   // unwrap کردن params
   useEffect(() => {
     async function unwrapParams() {
-      const resolvedParams = await params;  // unwrap کردن params به صورت صحیح
-      setSlug(resolvedParams.slug);  // بعد از unwrap کردن params، مقدار slug را ذخیره می‌کنیم
+      const resolvedParams = await params;  
+      setSlug(resolvedParams.slug);  
     }
 
-    unwrapParams();  // فراخوانی تابع unwrapParams
-  }, [params]);  // زمانی که params تغییر کند، unwrap می‌شود
+    unwrapParams();  
+  }, [params]);  
 
-  // واکشی اطلاعات محصول تنها در سمت کلاینت
   useEffect(() => {
-    if (!slug) return;  // اگر slug هنوز موجود نباشد، کاری نکنیم
+    if (!slug) return;  
 
     async function fetchProduct() {
       const productData = await dataProduct(slug);
@@ -40,10 +39,20 @@ export default function ProductDetails({ params }) {
     }
 
     fetchProduct();
-  }, [slug]);  // فقط زمانی که slug تغییر کند، داده‌ها بارگذاری می‌شوند
+  }, [slug]); 
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    setShowAlert(true); // Show alert when product is added to cart
+
+    // Hide the alert after 3 seconds
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
+  };
 
   if (!product) {
-    return <div>Loading...</div>;  // در صورتی که محصول بارگذاری نشده باشد
+    return <div>Loading...</div>; 
   }
 
   return (
@@ -52,9 +61,11 @@ export default function ProductDetails({ params }) {
       <p>Price: ${product.price}</p>
       <p>{product.desc}</p>
       <Link href='./'>back</Link>
-      <button onClick={() => addToCart(product)}>Add to Cart</button><br />
-      <CartPage/>
-
+      <br/>
+      <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+      
+      
+      {showAlert && <Alert sx={{height:'50px',width:'300px', position:'absolute',bottom:'50px',left:'10px'}} severity="success">Product added to cart!</Alert>}
     </div>
   );
 }

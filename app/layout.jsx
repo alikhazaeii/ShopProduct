@@ -1,4 +1,7 @@
+import Search from "@/components/search";
 import "./globals.css";
+import CartIcon from "@/components/cartIcon";
+import Image from "next/image";
 
 
 export const metadata = {
@@ -10,9 +13,32 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-     
+
       >
-        {children}        
+        <main className="bg-[#ede7bf]">
+          <nav className="w-full h-[80px]  flex justify-center capitalize items-center text-black fixed bg-[#ede7bf]">
+            <figure className="w-[200px] flex justify-center items-center">
+              <Image className="object-cover" src='/iphonelogo.png' width={50} height={50} alt='logo' />
+            </figure>
+            <ul className=" *:m-5 flex justify-end items-center">
+              <div className="*:px-5 hidden lg:flex">
+              <li>store</li>
+              <li>mac</li>
+              <li>ipad</li>
+              <li>iphone</li>
+              <li>watch</li>
+              </div>
+              <li className="w-[200px] md:w-[500px]">
+                <Search />
+              </li>
+              <li><CartIcon /></li>
+
+            </ul>
+          </nav>
+
+          {children}
+        </main>
+
       </body>
     </html>
   );
