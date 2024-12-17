@@ -32,14 +32,14 @@ export default function Search() {
         product.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredProducts(filtered);
-      setIsDropdownVisible(true); // اگر مقداری وارد شود، لیست نشان داده شود
+      setIsDropdownVisible(true); 
     }
   }, [searchTerm, products]);
 
-  // مدیریت کلیک روی نتیجه و پنهان کردن لیست
+
   const handleResultClick = () => {
-    setIsDropdownVisible(false); // بستن لیست هنگام کلیک روی یک گزینه
-    setSearchTerm(''); // پاک کردن فیلد جستجو
+    setIsDropdownVisible(false); 
+    setSearchTerm(''); 
   };
 
   return (
@@ -49,7 +49,7 @@ export default function Search() {
         placeholder="Search products..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="p-5 rounded w-full h-[50px] border-none outline-none border-b-2"
+        className="p-5 rounded w-full h-[25px] border-none outline-none border-b-2"
       />
 
       {isDropdownVisible && (
