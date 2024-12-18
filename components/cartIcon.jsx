@@ -27,7 +27,7 @@ export default function CartIcon() {
   };
 
   return (
-    <IconButton aria-label="cart" onClick={handleClick} sx={{color:'skyblue'}} >
+    <IconButton aria-label="cart" onClick={handleClick} sx={{color:'black'}} >
       <StyledBadge badgeContent={totalItems} color="error">
         <ShoppingCartIcon />
       </StyledBadge>

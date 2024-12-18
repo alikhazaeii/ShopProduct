@@ -6,6 +6,7 @@ import Image from 'next/image';
 import HoverRating from '@/components/ui/rait';
 import Button from '@mui/material/Button';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useRouter } from 'next/navigation';
 
 async function dataProduct(id) {
   const res = await fetch(`https://673fa428a9bc276ec4b93059.mockapi.io/prodoctShop/${id}`);
@@ -21,6 +22,8 @@ export default function ProductDetails({ params }) {
   const [slug, setSlug] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
   const [transform, setTransform] = useState('scale(.8) translate(0px, 0px)');
+
+  const router = useRouter()
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -68,6 +71,9 @@ export default function ProductDetails({ params }) {
 
   return (
     <div className=" p-5  w-full h-screen flex flex-wrap justify-evenly rounded-xl items-center relative bg-white">
+      <button >
+        product
+      </button>
       <figure
         className="relative w-full md:w-6/12 overflow-hidden border rounded-lg"
         style={{ height: '400px' }}

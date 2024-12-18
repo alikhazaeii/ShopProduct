@@ -16,14 +16,15 @@ export default function RootLayout({ children }) {
       <body
 
       >
-        <main className="bg-[#ede7bf]">
-          <nav className="w-full h-[50px]  flex justify-center capitalize items-center text-white fixed bg-[#3b82f6] z-20">
+        <main className="bg-white">
+          <nav className="w-full h-[100px]  flex justify-center capitalize items-center text-black fixed bg-[#fafafc] z-20 *:py-5">
             <figure className="w-[200px] flex justify-center items-center">
               <Image className="object-cover" src='/iphonelogo.png' width={40} height={40} alt='logo' />
             </figure>
             <ul className=" *:m-5 flex justify-end items-center">
-              <div className="*:px-5 hidden lg:flex">
-              <li><Link href='./'>Products</Link></li>
+            
+              <div className="*:px-5 hidden xl:flex ">
+              <li>store</li>  
               <li>mac</li>
               <li>ipad</li>
               <li>iphone</li>
@@ -36,7 +37,7 @@ export default function RootLayout({ children }) {
 
             </ul>
           </nav>
-
+          
           {children}
         </main>
 
