@@ -34,7 +34,8 @@ export default async function ProductPage() {
               <Button variant="contained" color="success" sx={{ width: '120px' }}>
                 <Link href={`${product.id}`} className="text-slate-600">
                   View Details
-                </Link>
+                  </Link>
+              
               </Button>
 
             </div>

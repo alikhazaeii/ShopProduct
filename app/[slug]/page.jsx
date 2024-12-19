@@ -6,7 +6,6 @@ import Image from 'next/image';
 import HoverRating from '@/components/ui/rait';
 import Button from '@mui/material/Button';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useRouter } from 'next/navigation';
 
 async function dataProduct(id) {
   const res = await fetch(`https://673fa428a9bc276ec4b93059.mockapi.io/prodoctShop/${id}`);
@@ -23,7 +22,26 @@ export default function ProductDetails({ params }) {
   const [showAlert, setShowAlert] = useState(false);
   const [transform, setTransform] = useState('scale(.8) translate(0px, 0px)');
 
-  const router = useRouter()
+  useEffect(() => {
+    async function unwrapParams() {
+      try {
+        const resolvedParams = await params;
+        setSlug(resolvedParams.slug);
+      } catch (error) {
+        console.error('Error resolving params:', error);
+      }
+    }
+    unwrapParams();
+  }, [params]);
+
+  useEffect(() => {
+    if (!slug) return;
+    async function fetchProduct() {
+      const productData = await dataProduct(slug);
+      setProduct(productData);
+    }
+    fetchProduct();
+  }, [slug]);
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -40,23 +58,6 @@ export default function ProductDetails({ params }) {
     setTransform('scale(.8) translate(0px, 0px)');
   };
 
-  useEffect(() => {
-    async function unwrapParams() {
-      const resolvedParams = await params;
-      setSlug(resolvedParams.slug);
-    }
-    unwrapParams();
-  }, [params]);
-
-  useEffect(() => {
-    if (!slug) return;
-    async function fetchProduct() {
-      const productData = await dataProduct(slug);
-      setProduct(productData);
-    }
-    fetchProduct();
-  }, [slug]);
-
   const handleAddToCart = (product) => {
     addToCart(product);
     setShowAlert(true);
@@ -65,15 +66,24 @@ export default function ProductDetails({ params }) {
     }, 2000);
   };
 
+  const handleBackToProductPage = () => {
+    window.location.href = '/';
+  };
+
   if (!product) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className=" p-5  w-full h-screen flex flex-wrap justify-evenly rounded-xl items-center relative bg-white">
-      <button >
-        product
+    <div className="p-5 w-full h-screen flex flex-wrap justify-evenly rounded-xl items-center relative bg-white *:drop-shadow-2xl *:shadow-black">
+      <nav className='absolute z-50 top-28 left-10 *:mx-2 text-2xl *:capitalize hidden  md:block '>
+      <button onClick={handleBackToProductPage} >
+       product
       </button>
+      <span className='font-bold'>
+        {'>'} Detail
+      </span>
+      </nav>
       <figure
         className="relative w-full md:w-6/12 overflow-hidden border rounded-lg"
         style={{ height: '400px' }}
@@ -81,7 +91,7 @@ export default function ProductDetails({ params }) {
         onMouseLeave={handleMouseLeave}
       >
         <Image
-          src={product.avatar}
+          src={product.avatar[0].url}
           width={500}
           height={500}
           alt="avatar"
@@ -89,23 +99,22 @@ export default function ProductDetails({ params }) {
           style={{ transform }}
         />
       </figure>
-        
-      <article className="w-full md:w-5/12 *:my-5 text-center px-5 md:text-start border" >
-        <h2 className="font-bold text-2xl md:text-5xl my-2">$ {product.price}</h2>
+
+      <article className="w-full md:w-5/12 *:my-3 text-center px-5 md:text-start border" >
+        <h2 className="font-bold text-2xl md:text-5xl my-2">${product.price}</h2>
         <h1 className="font-bold text-lg md:text-2xl">{product.name}</h1>
         <p>{product.desc}</p>
         <HoverRating />
         <Button variant="contained" color="success" sx={{width:'120px'}}>
           buy
-
         </Button>
         <br />
         <button
           onClick={() => handleAddToCart(product)}
           className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
         >
-          <ShoppingCartIcon/>
-          Add to Cart
+          <ShoppingCartIcon />
+          Add to cart
         </button>
       </article>
 
@@ -116,12 +125,13 @@ export default function ProductDetails({ params }) {
             height: '50px',
             width: '300px',
             position: 'absolute',
-            top: '50px',
+            top: '150px',
             right: '10px',
           }}
+          className='md:top-[100px]'
           severity="success"
         >
-          Product added to cart!
+         Added to Cart
         </Alert>
       )}
     </div>
