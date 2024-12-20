@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-export default function ImageSlider() {
+export default function Demo() {
   const images = [
     { src: '/one.jpg', alt: 'Apple Intelligence and macOS Easy to use. Easy to love' },
     { src: '/two.jpg', alt: 'Performance and Battery Life Go fast. Go far.' },
