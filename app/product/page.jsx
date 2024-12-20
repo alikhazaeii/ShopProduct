@@ -24,8 +24,10 @@ export default async function ProdoctShop() {
         {data.map((product) => {
           const randomRating = Math.floor(Math.random() * 5) + 1;
           let x = product.id + "-" + product.name;
+          console.log(x);
+          
           return (
-            <div key={product.id} className="text-black border w-full md:w-5/12 lg:w-3/12 flex flex-wrap justify-center items-center m-5 py-2 text-center hover:scale-110 transition-all duration-200 shadow-2xl *:my-2">
+            <div key={product.id} className="text-black border w-full md:w-5/12 lg:w-3/12 flex flex-wrap justify-center items-center m-5 py-2 text-center hover:scale-110 transition-all duration-200 shadow-2xl  *:my-2">
               <p className="w-full text-xl">{product.desc}</p>
               <Image src={product.avatar} width={300} height={300} alt="image" className="m-5" />
               <h2 className="text-xl w-full">price: <span className="text-2xl font-bold">${product.price}</span></h2>
