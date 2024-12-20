@@ -4,6 +4,7 @@ import Search from "@/components/search";
 import "./globals.css";
 import CartIcon from "@/components/cartIcon";
 import Image from "next/image";
+import Footer from "@/components/footer";
 
 
 const geistSans = Geist({
@@ -50,6 +51,7 @@ export default function RootLayout({ children }) {
           </nav>
           
         {children}
+        <Footer/>
         </main>
       </body>
     </html>

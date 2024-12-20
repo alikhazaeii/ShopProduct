@@ -37,7 +37,7 @@ export default function video() {
       <div className='flex flex-wrap justify-center space-x-2 mt-4 w-full'>
         {videos.map((_, index) => (
           
-            <button key={index} className={`w-3 h-3 rounded-full ${index === videoShow ? 'bg-blue-400' : 'bg-red-800'}`}
+            <button key={index} className={`w-3 h-3 rounded-full ${index === videoShow ? 'bg-yellow-400' : 'bg-red-800'}`}
               onClick={() => setVideoShow(index)}>
 
             </button>
