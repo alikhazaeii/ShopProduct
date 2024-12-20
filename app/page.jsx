@@ -1,11 +1,18 @@
 import React from 'react'
-import Home from "./product/page";
-import Video from "@/components/video";
-export default function App() {
+import "./globals.css"
+import  Video  from "@/components/video";
+import ProductShop from "@/app/product/page";
+
+
+
+
+export default function page() {
   return (
-    <section  >
+    <section className="w-full">
       <Video/>
-      <Home/>
+      <ProductShop/>
     </section>
   )
 }
+
+
