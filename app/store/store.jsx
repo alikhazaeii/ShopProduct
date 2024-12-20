@@ -31,7 +31,7 @@ const useStore = create((set) => ({
     myMinus: (i) => set((state) => {
         const x = state.data.findIndex((val) => val.id === i)
         if (x !== -1) {
-
+            
             if(state.data[x].count>0){
                 state.data[x].count -= 1;
                 return { data: [...state.data] };

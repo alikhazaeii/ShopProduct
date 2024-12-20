@@ -31,9 +31,6 @@ export default async function ProdoctShop() {
               <h2 className="text-xl w-full">price: <span className="text-2xl font-bold">${product.price}</span></h2>
               <Rating name={`rating-${product.id}`} value={randomRating} readOnly className="w-full flex justify-center" />
               <div className="flex justify-evenly w-full p-5">
-                <Button variant="contained" color="success" sx={{ width: '120px', height: '50px',  }}>
-                  buy
-                </Button>
                 <Button variant="contained" color="warning" sx={{ width: '120px', height: '50px', }}>
                   <Link href={x} as={x}>
                     detail
