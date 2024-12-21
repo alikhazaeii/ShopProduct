@@ -7,6 +7,7 @@ import useStore from "../store/store";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Alert, Button, Rating } from '@mui/material';
 import LoadingComponent from "@/components/lodaring";
+import ThumbnailList from "@/components/tamnailimage";
 
 
 async function getData(x) {
@@ -140,19 +141,7 @@ export default function Page({ params: paramsPromise }) {
 
                     Add to Basket</button>
             </article>
-            <div className="flex justify-center mt-4 space-x-2">
-                {data.image && data.image.map((imageUrl, index) => (
-                    <button key={index} onClick={() => handleActiveImage(imageUrl)}>
-                        <Image
-                            src={imageUrl}
-                            width={80}
-                            height={80}
-                            alt={`Thumbnail ${index}`}
-                            className="object-contain w-20 h-20 rounded-lg border"
-                        />
-                    </button>
-                ))}
-            </div>
+            <ThumbnailList images={data.image} onImageClick={handleActiveImage} />
 
 
             {showAlert && (
