@@ -8,6 +8,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Alert, Button, Rating } from '@mui/material';
 import LoadingComponent from "@/components/lodaring";
 import ThumbnailList from "@/components/tamnailimage";
+import AlertBox from "@/components/alert";
+import ProductDetail from "@/components/detail";
 
 
 async function getData(x) {
@@ -126,39 +128,13 @@ export default function Page({ params: paramsPromise }) {
                     style={{ transform }}
                 />
             </figure>
-            <article className="w-full md:w-5/12 *:my-5 text-center px-5 md:text-start border">
-                <h2 className="font-bold text-2xl md:text-5xl my-2">${data.price}</h2>
-                <h2 className="font-bold text-lg md:text-2xl"> {data.name}!</h2>
-                <h3>{data.desc}</h3>
-                <Rating name={`rating-${data.id}`} value={randomRating} readOnly className="w-full flex justify-start" />
+           
+            <ProductDetail data={data} randomRating={randomRating} onAddToCart={() => alert(data)} />
 
-                <Button variant="contained" color="success" sx={{ width: '150px', height: '40px' }}>
-                    buy
-                </Button>
-
-                <button onClick={() => alert(data)} className="m-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
-                    <ShoppingCartIcon />
-
-                    Add to Basket</button>
-            </article>
             <ThumbnailList images={data.image} onImageClick={handleActiveImage} />
+            
+            <AlertBox showAlert={showAlert} severity={alertSeverity} message={alertMessage} />
 
-
-            {showAlert && (
-                <Alert
-                    sx={{
-                        height: '50px',
-                        width: '300px',
-                        position: 'absolute',
-                        top: '150px',
-                        right: '10px',
-                    }}
-                    className='md:top-[100px]'
-                    severity={alertSeverity}
-                >
-                    {alertMessage}
-                </Alert>
-            )}
         </div>
 
     );
