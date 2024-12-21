@@ -9,6 +9,7 @@ import { IconButton, Button, Dialog, DialogTitle, DialogContent, DialogActions, 
 
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import Submitmassage from '@/components/submitmassage';
 export default function page() {
     const { myPlus, myMinus } = useStore()
     const temp = useStore((state) => state.data)
@@ -23,6 +24,7 @@ export default function page() {
         Phone: '',
     });
 
+    const [message , setMessage] = useState(false)
     useEffect(() => {
         const updatePrices = {};
         let total = 0
@@ -67,12 +69,13 @@ export default function page() {
 
     const submit = () => {
         console.log(userInfo);
-        alert('pursches successfull')
         setOpenDialog(false)
-
+        setMessage(true)
     }
 
-
+    const closeMessage = ()=>{
+        setMessage(false)
+    }
     return (
         <div className='mt-32  w-full text-xl text-center flex flex-wrap '>
             <span className='*:m-2 w-full'>
@@ -149,7 +152,7 @@ export default function page() {
                 </DialogActions>
                 <div className='w-12/12 text-center text-lg m-2 font-bold' >The console log is only used for storing information <br /> I know it's  <strong>not secure</strong></div>
             </Dialog>
-
+            <Submitmassage onClose={closeMessage} open={message} message="Thanks For Your purchase!" />
         </div>
 
 
