@@ -15,9 +15,6 @@ export default function ProductDetail({ data, randomRating, onAddToCart }) {
         className="w-full flex justify-start"
       />
 
-      <Button variant="contained" color="success" sx={{ width: "150px", height: "40px" }}>
-        Buy
-      </Button>
 
       <button
         onClick={onAddToCart}
