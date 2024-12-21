@@ -4,8 +4,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import useStore from "../store/store";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Alert, Button, Rating } from '@mui/material';
 import LoadingComponent from "@/components/lodaring";
 import ThumbnailList from "@/components/tamnailimage";
 import AlertBox from "@/components/alert";

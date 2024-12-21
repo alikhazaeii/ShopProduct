@@ -83,10 +83,10 @@ export default function page() {
 
             <article className='w-full lg:w-7/12'>
                 {temp && temp.map((val, i) => {
-                    return <div key={i} className='w-full flex flex-wrap justify-evenly my-5 border rounded-2xl' >
+                    return <div key={i} className='w-full flex flex-wrap justify-evenly my-5 border rounded-2xl shadow-xl' >
 
-                        <figure className='w-full lg:w-4/12 flex item-center justify-center' >
-                            <Image width={300} height={100} src={val.avatar} alt='img' />
+                        <figure className='w-full h-[20vh] lg:w-4/12 flex item-center justify-center' >
+                            <Image width={100} height={50} src={val.avatar} alt='img' />
                         </figure>
 
 
@@ -110,12 +110,12 @@ export default function page() {
                     </div>
                 })}
             </article>
-            <div className='w-full lg:w-3/12 lg:fixed lg:top-32 lg:right-10 text-center  lg:text-start border shadow-xl'>
+            <div className='w-full lg:w-3/12 lg:fixed lg:top-48 lg:right-10 text-center  lg:text-start border shadow-xl'>
                 <h2 className=' text-lg lg:text-xl capitalize font-bold my-10 text-center'>cart shopping</h2>
                 <h3 className='p-5 text-sm lg:text-lg'>Total Items Price: ${totalItemsPrice}.00</h3>
                 <h3 className='p-5 text-sm lg:text-lg'>Tax: ${tax.toFixed(2)}</h3>
                 <h3 className=' p-5 text-sm lg:text-lg font-bold border-t-2'>Total: ${totalPrice}</h3>
-                <Button size='medium' sx={{margin:'10px'}} variant='contained' color='primary' onClick={buyAll}>buy All</Button>
+                <Button size='medium' sx={{ margin: '10px' }} variant='contained' color='primary' onClick={buyAll}>buy All</Button>
             </div>
 
             <Dialog open={openDialog} onClose={closeDialog}>
@@ -125,20 +125,20 @@ export default function page() {
                         fullWidth
                         label="Name"
                         margin='dense'
-                        value={userInfo.name}
+                        value={userInfo.Name}
                         onChange={(e) => setUserInfo({ ...userInfo, Name: e.target.value })}
                     />
                     <TextField
                         fullWidth
                         label="Address"
                         margin='dense'
-                        value={userInfo.adress}
+                        value={userInfo.Adress}
                         onChange={(e) => setUserInfo({ ...userInfo, Adress: e.target.value })}
                     />
                     <TextField fullWidth
                         label="Phone"
                         margin='dense'
-                        value={userInfo.phone}
+                        value={userInfo.Phone}
                         onChange={(e) => setUserInfo({ ...userInfo, Phone: e.target.value })}
                     />
 
@@ -147,6 +147,7 @@ export default function page() {
                     <Button color='secondary' onClick={closeDialog}>Cancel</Button>
                     <Button color='primary' onClick={submit}>Submit</Button>
                 </DialogActions>
+                <div className='w-12/12 text-center text-lg m-2 font-bold' >The console log is only used for storing information <br /> I know it's  <strong>not secure</strong></div>
             </Dialog>
 
         </div>
