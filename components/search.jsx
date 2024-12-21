@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -9,7 +10,7 @@ export default function Search() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
- 
+
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -26,20 +27,20 @@ export default function Search() {
   useEffect(() => {
     if (searchTerm === '') {
       setFilteredProducts([]);
-      setIsDropdownVisible(false); 
+      setIsDropdownVisible(false);
     } else {
       const filtered = products.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        product.desc.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredProducts(filtered);
-      setIsDropdownVisible(true); 
+      setIsDropdownVisible(true);
     }
   }, [searchTerm, products]);
 
 
   const handleResultClick = () => {
-    setIsDropdownVisible(false); 
-    setSearchTerm(''); 
+    setIsDropdownVisible(false);
+    setSearchTerm('');
   };
 
   return (
@@ -53,13 +54,16 @@ export default function Search() {
       />
 
       {isDropdownVisible && (
-        <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded shadow-md z-10">
+        <ul className="absolute top-full left-0  w-full lg:w-[500px] bg-[#efcfef] border border-gray-300 rounded shadow-md z-10 opacity-90">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-              <li key={product.id} className="p-2 hover:bg-gray-100">
-                <Link href={`${product.id}`} onClick={handleResultClick}>
-                  {product.name}
+              <li key={product.id} className="p-2 hover:bg-gray-100 w-full flex border *:mx-2 my-2 items-center">
+                <Image width={50} height={50} src={product.avatar} alt='images' />
+                <Link href={`${product.id}`} onClick={handleResultClick} className='w-5/12'>
+                  {product.desc}
                 </Link>
+                
+
               </li>
             ))
           ) : (

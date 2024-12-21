@@ -23,7 +23,7 @@ export default function video() {
 
   return (
     <>
-      <div className='w-full flex flex-wrap justify-center pt-32  '>
+      <div className='w-full flex flex-wrap justify-center  '>
         <div className='w-10/12 flex justify-evenly text-center text-lg lg:text-4xl capitalize my-5'>
         <h2>mac</h2>
         <h2>iphone</h2>

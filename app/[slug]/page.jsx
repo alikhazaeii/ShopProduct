@@ -6,6 +6,7 @@ import Link from "next/link";
 import useStore from "../store/store";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Alert, Button, Rating } from '@mui/material';
+import LoadingComponent from "@/components/lodaring";
 
 
 async function getData(x) {
@@ -41,6 +42,7 @@ export default function Page({ params: paramsPromise }) {
     React.useEffect(() => {
         if (!params) return;
 
+
         async function fetchData() {
             try {
                 const result = await getData(params.slug);
@@ -54,9 +56,15 @@ export default function Page({ params: paramsPromise }) {
         fetchData();
     }, [params]);
 
+
+
     // Render loading states
     if (!params || !data) {
-        return <main><h1>Loading...</h1></main>;
+        return < >
+            
+            <LoadingComponent/>
+
+        </>;
     }
 
     const alert = (data) => {

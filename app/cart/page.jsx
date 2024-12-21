@@ -9,7 +9,6 @@ import { IconButton, Button, Dialog, DialogTitle, DialogContent, DialogActions, 
 
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
-import { Padding } from '@mui/icons-material';
 export default function page() {
     const { myPlus, myMinus } = useStore()
     const temp = useStore((state) => state.data)
