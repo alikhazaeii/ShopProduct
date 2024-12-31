@@ -5,6 +5,8 @@ import "./globals.css";
 import CartIcon from "@/components/cartIcon";
 import Image from "next/image";
 import Footer from "@/components/footer";
+import Link from "next/link";
+import { raleway } from "@/font/font";
 
 
 const geistSans = Geist({
@@ -26,13 +28,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center bg-white`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center bg-white ${raleway.className}`}
       >
         <main className=" w-full bg-white text-black flex flex-wrap justify-center">
         <nav className=" w-full h-[100px]  flex justify-center capitalize items-center text-black fixed bg-[#fafafc] z-20 *:py-5">
-            <figure className="w-[200px] flex justify-center items-center">
-              <Image className="object-cover" src='/iphonelogo.png' width={40} height={40} alt='logo' />
+            <Link href="/">
+            <figure className="w-[200px] flex justify-center items-center group ">
+              <Image className="object-cover group-hover:scale-125 transition-all duration-300" src='/iphonelogo.png' width={40} height={40} alt='logo' />
             </figure>
+            </Link>
             <ul className=" *:m-5 flex justify-end items-center">
             
               <div className="*:px-5 hidden xl:flex ">

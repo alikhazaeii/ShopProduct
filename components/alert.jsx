@@ -13,7 +13,7 @@ export default function AlertBox({ showAlert, severity, message }) {
         top: "150px",
         right: "10px",
       }}
-      className="md:top-[100px]"
+      className="top-[100px] fixed "
       severity={severity}
     >
       {message}
